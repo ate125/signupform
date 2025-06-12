@@ -242,6 +242,12 @@
           <span class="error" id="confirmPasswordError"></span>
         </div>
       </div>
+      <!-- Add a username field in the form -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+        <span class="error" id="usernameError"></span>
+      </div>
       <button type="submit">Submit</button>
       <div>
         <p style="text-align: center">
@@ -273,6 +279,7 @@
           const password = document.getElementById("password").value;
           const confirmPassword =
             document.getElementById("confirmPassword").value;
+          const username = document.getElementById("username").value.trim();
 
           if (!/^[A-Za-z]+$/.test(firstName)) {
             document.getElementById("firstNameError").textContent =
