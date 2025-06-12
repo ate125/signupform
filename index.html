@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up Form</title>
+    <style>
+      /* style.css (optimized) */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        padding: 2rem;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+
+      h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+      }
+
+      form {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      form:hover {
+        transform: translateY(-5px);
+      }
+
+      .name,
+      .mail,
+      .pass {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        flex: 1;
+        margin-bottom: 0 auto;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #4a5568;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      input.error-field {
+        border-color: #fc8181;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      button:hover {
+        opacity: 0.95;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .error {
+        color: #fc8181;
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+        display: block;
+        opacity: 0;
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+
+      .error.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.2rem;
+        user-select: none;
+      }
+
+      /* Media Queries */
+      @media screen and (max-width: 768px) {
+        body {
+          padding: 1.5rem;
+        }
+        .name,
+        .mail,
+        .pass {
+          gap: 1rem;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        body {
+          padding: 1rem;
+        }
+        form {
+          padding: 1.5rem;
+          border-radius: 18px;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .name,
+        .mail,
+        .pass {
+          flex-direction: column;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        form {
+          padding: 1rem;
+          border-radius: 15px;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+        input {
+          padding: 0.7rem;
+        }
+        button {
+          padding: 0.8rem;
+        }
+      }
+
+      @media screen and (max-width: 320px) {
+        form {
+          border-radius: 12px;
+        }
+        input {
+          padding: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Sign-Up Form</h2>
+    <form id="signupForm" novalidate action="log.php" method="post">
+      <div class="name">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" required />
+          <span class="error" id="firstNameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" required />
+          <span class="error" id="lastNameError"></span>
+        </div>
+      </div>
+      <div class="mail">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <span class="error" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" name="phone" id="phone" required />
+          <span class="error" id="phoneError"></span>
+        </div>
+      </div>
+      <div class="pass">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div style="position: relative">
+            <input type="password" name="password" id="password" required />
+            <span class="toggle-password" id="togglePassword">👁</span>
+          </div>
+          <span class="error" id="passwordError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div style="position: relative">
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              required
+            />
+            <span class="toggle-password" id="toggleConfirmPassword">👁</span>
+          </div>
+          <span class="error" id="confirmPasswordError"></span>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+      <div>
+        <p style="text-align: center">
+          already have an acount?<a
+            href="login.html"
+            style="text-decoration: none"
+            >Login</a
+          >
+        </p>
+      </div>
+    </form>
+
+    <script>
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let valid = true;
+
+          document.querySelectorAll(".error").forEach((e) => {
+            e.textContent = "";
+            e.classList.remove("show");
+          });
+
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (!/^[A-Za-z]+$/.test(firstName)) {
+            document.getElementById("firstNameError").textContent =
+              "First name must contain letters only.";
+            document.getElementById("firstNameError").classList.add("show");
+            valid = false;
+          }
+
+          if (!/^[A-Za-z]+$/.test(lastName)) {
+            document.getElementById("lastNameError").textContent =
+              "Last name must contain letters only.";
+            document.getElementById("lastNameError").classList.add("show");
+            valid = false;
+          }
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById("emailError").textContent =
+              "Enter a valid email address.";
+            document.getElementById("emailError").classList.add("show");
+            valid = false;
+          }
+
+          if (!/^(\+251|0)?9\d{8}$/.test(phone)) {
+            document.getElementById("phoneError").textContent =
+              "Enter a valid Ethiopian phone number (e.g. +2519xxxxxxxx or 09xxxxxxxx).";
+            document.getElementById("phoneError").classList.add("show");
+            valid = false;
+          }
+
+          if (
+            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/.test(
+              password
+            )
+          ) {
+            document.getElementById("passwordError").textContent =
+              "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+            document.getElementById("passwordError").classList.add("show");
+            valid = false;
+          }
+
+          if (password !== confirmPassword) {
+            document.getElementById("confirmPasswordError").textContent =
+              "Passwords do not match.";
+            document
+              .getElementById("confirmPasswordError")
+              .classList.add("show");
+            valid = false;
+          }
+
+          if (valid) {
+            const btn = document.querySelector("button");
+            btn.classList.add("loading");
+            btn.innerHTML = "Submitting...";
+            setTimeout(() => {
+              btn.classList.remove("loading");
+              btn.innerHTML = "Submit";
+              alert("Form submitted successfully!");
+            }, 1500);
+          }
+        });
+
+      document
+        .getElementById("togglePassword")
+        .addEventListener("click", function () {
+          const pwd = document.getElementById("password");
+          pwd.type = pwd.type === "password" ? "text" : "password";
+          this.textContent = pwd.type === "password" ? "👁" : "🙈";
+        });
+
+      document
+        .getElementById("toggleConfirmPassword")
+        .addEventListener("click", function () {
+          const pwd = document.getElementById("confirmPassword");
+          pwd.type = pwd.type === "password" ? "text" : "password";
+          this.textContent = pwd.type === "password" ? "👁" : "🙈";
+        });
+    </script>
+  </body>
+</html>
